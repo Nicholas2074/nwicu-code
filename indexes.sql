@@ -65,7 +65,7 @@ DROP INDEX IF EXISTS prescriptions_idx01;
 CREATE INDEX prescriptions_idx01
   ON prescriptions (starttime, stoptime);
 
-SET search_path TO nwsci;
+SET search_path TO icu;
 
 -- icu schema
 
@@ -103,4 +103,5 @@ CREATE INDEX procedureevents_idx01
 
 DROP INDEX IF EXISTS procedureevents_idx02;
 CREATE INDEX procedureevents_idx02
+
   ON procedureevents (ordercategoryname);
