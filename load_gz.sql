@@ -2,13 +2,11 @@
 
 -- the script assumes the files are in the hosp and icu subfolders of nwicu
 
-\cd /tmp/nwicu
-
 -- making sure correct encoding is defined as -utf8- 
 SET CLIENT_ENCODING TO 'utf8';
 
 -- hosp schema
-\cd nw_hosp
+\cd /tmp/nwicu/nw_hosp
 
 COPY hosp.admissions FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_hosp/admissions.csv.gz' DELIMITER ',' CSV HEADER NULL '';
 COPY hosp.diagnoses_icd FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_hosp/diagnoses_icd.csv.gz' DELIMITER ',' CSV HEADER NULL '';
@@ -20,9 +18,9 @@ COPY hosp.patients FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_hosp/patients.csv.gz' DE
 COPY hosp.prescriptions FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_hosp/prescriptions.csv.gz' DELIMITER ',' CSV HEADER NULL '';
 
 -- icu schema
-\cd ../nw_icu
+\cd /tmp/nwicu/nw_icu
 
-COPY icu.chartevents FROM PROGRAM 'gzip -dc chartevents.csv.gz' DELIMITER ',' CSV HEADER NULL '';
-COPY icu.d_items FROM PROGRAM 'gzip -dc d_items.csv.gz' DELIMITER ',' CSV HEADER NULL '';
-COPY icu.icustays FROM PROGRAM 'gzip -dc icustays.csv.gz' DELIMITER ',' CSV HEADER NULL '';
-COPY icu.procedureevents FROM PROGRAM 'gzip -dc procedureevents.csv.gz' DELIMITER ',' CSV HEADER NULL '';
+COPY icu.chartevents FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_icu/chartevents.csv.gz' DELIMITER ',' CSV HEADER NULL '';
+COPY icu.d_items FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_icu/d_items.csv.gz' DELIMITER ',' CSV HEADER NULL '';
+COPY icu.icustays FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_icu/icustays.csv.gz' DELIMITER ',' CSV HEADER NULL '';
+COPY icu.procedureevents FROM PROGRAM 'gzip -dc /tmp/nwicu/nw_icu/procedureevents.csv.gz' DELIMITER ',' CSV HEADER NULL '';
